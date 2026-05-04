@@ -5,19 +5,19 @@ description: VM for Weather-Bot deployment
 parameters:
   image:
     type: string
-    default: ununtu-22.04
+    default: ubuntu-24.04
   flavor:
     type: string
     default: m1.small
   network:
     type: string
-    default: sutdents-net
+    default: student-net
   key_name:
     type: string
-    default: zoloev
+    default: zoloev-key
   security_group:
     type: string
-    default: default
+    default: zoloev-sg
 
 resources:
   app_server:
