@@ -1,0 +1,39 @@
+heat_template_version: 2018-08-31
+
+description: VM for Weather-Bot deployment
+
+parameters:
+  image:
+    type: string
+    default: ununtu-22.04
+  flavor:
+    type: string
+    default: m1.small
+  network:
+    type: string
+    default: sutdents-net
+  key_name:
+    type: string
+    default: zoloev
+  security_group:
+    type: string
+    default: default
+
+resources:
+  app_server:
+    type: OS::Nova::Server
+    properties:
+      name: zoloev-weather-bot-app
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      networks:
+        - network: { get_param: network }
+      key_name: { get_param: key_name }
+      security_groups:
+        - { get_param: security_group }
+
+outputs:
+  server_name:
+    value: { get_attr: [app_server, name] }
+  server_ip:
+    value: { get_attr: [app_server, first_address] }
